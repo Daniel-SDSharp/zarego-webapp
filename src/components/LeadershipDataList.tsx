@@ -10,7 +10,7 @@ const LeadershipData: React.FC<LeadershipDataProps> = ({ selectedCountries }) =>
   const [data, setData] = useState<Leadership[]>([]);
   const [page, setPage] = useState(1);
   const [totalRegisters, setTotalRegisters] = useState(0);
-  const rowsPerPage = 15;
+  const rowsPerPage = 10;
 
   useEffect(() => {
     const getData = async () => {
@@ -71,7 +71,7 @@ const LeadershipData: React.FC<LeadershipDataProps> = ({ selectedCountries }) =>
           </table>
           <div className="flex justify-between mt-4">
             <button
-              className="bg-blue-500 text-white px-4 py-2 rounded disabled:bg-blue-200"
+              className={`bg-blue-500 text-white px-4 py-2 rounded ${page === 1 ? 'disabled:bg-blue-200 cursor-not-allowed' : ''}`}
               onClick={handlePreviousPage}
               disabled={page === 1}
             >
@@ -81,7 +81,7 @@ const LeadershipData: React.FC<LeadershipDataProps> = ({ selectedCountries }) =>
               Page {page} of {totalPages}
             </span>
             <button
-              className="bg-blue-500 text-white px-4 py-2 rounded disabled:bg-blue-200"
+              className={`bg-blue-500 text-white px-4 py-2 rounded ${page === totalPages ? 'disabled:bg-blue-200 cursor-not-allowed' : ''}`}
               onClick={handleNextPage}
               disabled={page === totalPages}
             >
