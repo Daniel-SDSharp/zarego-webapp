@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { Country } from './types';
+import { Country, PaginatedLeadershipResponse } from './types';
 import { API_URL } from '../const';
 
 export const fetchCountries = async (): Promise<Country[]> => {
@@ -12,7 +12,7 @@ export const fetchCountries = async (): Promise<Country[]> => {
   }
 };
 
-export const getLeadershipDataByCountries = async (countries: string[], page: number = 1, rows: number = 50) => {
+export const getLeadershipDataByCountries = async (countries: string[], page: number = 1, rows: number = 50): Promise<PaginatedLeadershipResponse> => {
   const response = await axios.get(`${API_URL}/leadership/countries`, {
     params: { list: countries.join(','), page, rows },
   });

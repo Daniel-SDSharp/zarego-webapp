@@ -14,3 +14,12 @@ export interface Leadership {
   decisive: number;
   date_added: string;
 }
+export interface PaginatedLeadershipResponse {
+  metadata: {
+    page: number;
+    rows: number;
+    row_count: number;
+    total_registers: number;
+  };
+  data: Leadership[];
+}
