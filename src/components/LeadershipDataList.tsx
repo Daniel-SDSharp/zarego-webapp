@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { getLeadershipDataByCountries } from '../services/api';
 import { Leadership } from '../services/types';
+import jsPDF from 'jspdf';
+import 'jspdf-autotable';
 
 interface LeadershipDataProps {
   selectedCountries: string[];
@@ -37,10 +39,38 @@ const LeadershipData: React.FC<LeadershipDataProps> = ({ selectedCountries }) =>
     }
   };
 
+  const downloadPDF = () => {
+    const doc = new jsPDF();
+    doc.autoTable({
+      head: [
+        ['ID', 'Country Name', 'Performance', 'Autocratic', 'Modesty', 'Country Cluster', 'Charisma', 'Decisive'],
+      ],
+      body: data.map((item) => [
+        item.id,
+        item.country_name,
+        item.performance_oriented,
+        item.autocratic,
+        item.modesty,
+        item.country_cluster,
+        item.charisma,
+        item.decisive,
+      ]),
+    });
+    doc.save('leadership_data.pdf');
+  };
+
   return (
     <div className="bg-white shadow-md rounded-lg p-4 w-full overflow-x-auto">
       {data.length > 0 ? (
         <>
+          <div className="flex justify-end mb-4">
+            <button
+              onClick={downloadPDF}
+              className="bg-green-500 text-white px-4 py-2 rounded"
+            >
+              Download PDF
+            </button>
+          </div>
           <table className="min-w-full border-collapse">
             <thead>
               <tr>
@@ -71,7 +101,7 @@ const LeadershipData: React.FC<LeadershipDataProps> = ({ selectedCountries }) =>
           </table>
           <div className="flex justify-between mt-4">
             <button
-              className={`bg-blue-500 text-white px-4 py-2 rounded ${page === 1 ? 'disabled:bg-blue-200 cursor-not-allowed' : ''}`}
+              className="bg-blue-500 text-white px-4 py-2 rounded disabled:bg-blue-200"
               onClick={handlePreviousPage}
               disabled={page === 1}
             >
@@ -81,7 +111,7 @@ const LeadershipData: React.FC<LeadershipDataProps> = ({ selectedCountries }) =>
               Page {page} of {totalPages}
             </span>
             <button
-              className={`bg-blue-500 text-white px-4 py-2 rounded ${page === totalPages ? 'disabled:bg-blue-200 cursor-not-allowed' : ''}`}
+              className="bg-blue-500 text-white px-4 py-2 rounded disabled:bg-blue-200"
               onClick={handleNextPage}
               disabled={page === totalPages}
             >
