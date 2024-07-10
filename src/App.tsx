@@ -9,10 +9,10 @@ const App: React.FC = () => {
 
   useEffect(() => {
     const handleResize = () => {
-      setIsMobileView(window.innerWidth < 768); // Consider 768px width as mobile breakpoint
+      setIsMobileView(window.innerWidth < 768);
     };
 
-    handleResize(); // Initial check
+    handleResize();
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
@@ -32,7 +32,7 @@ const App: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-gray-100 p-4">
-      <h1 className="text-4xl text-center mb-8">International Comparison of Leadership Dimensions</h1>
+      <h1 className="text-4xl text-center mb-8">International Leadership Data</h1>
       <div className="flex flex-col lg:flex-row justify-center gap-8">
         {isMobileView ? (
           <>
