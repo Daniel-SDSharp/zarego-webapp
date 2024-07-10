@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { getLeadershipDataByCountries } from '../services/api';
 import { Leadership } from '../services/types';
 import jsPDF from 'jspdf';
-import 'jspdf-autotable';
+import autoTable from 'jspdf-autotable';
 
 interface LeadershipDataProps {
   selectedCountries: string[];
@@ -41,7 +41,7 @@ const LeadershipData: React.FC<LeadershipDataProps> = ({ selectedCountries }) =>
 
   const downloadPDF = () => {
     const doc = new jsPDF();
-    doc.autoTable({
+    autoTable(doc, {
       head: [
         ['ID', 'Country Name', 'Performance', 'Autocratic', 'Modesty', 'Country Cluster', 'Charisma', 'Decisive'],
       ],
