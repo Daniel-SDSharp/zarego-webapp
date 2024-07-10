@@ -74,27 +74,21 @@ const LeadershipData: React.FC<LeadershipDataProps> = ({ selectedCountries }) =>
           <table className="min-w-full border-collapse">
             <thead>
               <tr>
-                <th className="py-2 px-4 border">ID</th>
                 <th className="py-2 px-4 border">Country Name</th>
                 <th className="py-2 px-4 border">Performance</th>
                 <th className="py-2 px-4 border">Autocratic</th>
-                <th className="py-2 px-4 border">Modesty</th>
-                <th className="py-2 px-4 border">Country Cluster</th>
-                <th className="py-2 px-4 border">Charisma</th>
-                <th className="py-2 px-4 border">Decisive</th>
+                <th className="py-2 px-4 border">Face Saver</th>
+                <th className="py-2 px-4 border">Diplomatic</th>
               </tr>
             </thead>
             <tbody>
               {data.map((item) => (
                 <tr key={item.id} className="hover:bg-gray-100">
-                  <td className="py-2 px-4 border text-center">{item.id}</td>
                   <td className="py-2 px-4 border text-center">{item.country_name}</td>
                   <td className="py-2 px-4 border text-center">{item.performance_oriented}</td>
                   <td className="py-2 px-4 border text-center">{item.autocratic}</td>
                   <td className="py-2 px-4 border text-center">{item.modesty}</td>
-                  <td className="py-2 px-4 border text-center">{item.country_cluster}</td>
                   <td className="py-2 px-4 border text-center">{item.charisma}</td>
-                  <td className="py-2 px-4 border text-center">{item.decisive}</td>
                 </tr>
               ))}
             </tbody>
